@@ -1,65 +1,53 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
-class MeetingRequestModel {
+class Meeting {
   final String id;
-  final String inviterId;
   final String inviteeId;
-  final DateTime dateTime;
-  final int duration;
-  final String roomId;
-  final String status; // e.g., "pending", "accepted", "declined"
+  final String inviteeName;
+  final String date;
+  final String startTime;
+  final String endTime;
+  final String room;
+  final String status;
+  final String createdBy;
 
-  MeetingRequestModel({
+  Meeting({
     required this.id,
-    required this.inviterId,
     required this.inviteeId,
-    required this.dateTime,
-    required this.duration,
-    required this.roomId,
+    required this.inviteeName,
+    required this.date,
+    required this.startTime,
+    required this.endTime,
+    required this.room,
     required this.status,
+    required this.createdBy,
   });
 
-  MeetingRequestModel copyWith({
-    String? id,
-    String? inviterId,
-    String? inviteeId,
-    DateTime? dateTime,
-    int? duration,
-    String? roomId,
-    String? status,
-  }) {
-    return MeetingRequestModel(
-      id: id ?? this.id,
-      inviterId: inviterId ?? this.inviterId,
-      inviteeId: inviteeId ?? this.inviteeId,
-      dateTime: dateTime ?? this.dateTime,
-      duration: duration ?? this.duration,
-      roomId: roomId ?? this.roomId,
-      status: status ?? this.status,
+  // Factory method to create a Meeting from a JSON map
+  factory Meeting.fromJson(Map<String, dynamic> json) {
+    return Meeting(
+      id: json['id'] as String,
+      inviteeId: json['inviteeId'] as String,
+      inviteeName: json['inviteeName'] as String,
+      date: json['date'] as String,
+      startTime: json['startTime'] as String,
+      endTime: json['endTime'] as String,
+      room: json['room'] as String,
+      status: json['status'] as String,
+      createdBy: json['createdBy'] as String,
     );
   }
 
-  factory MeetingRequestModel.fromFirestore(DocumentSnapshot doc) {
-    final data = doc.data() as Map<String, dynamic>;
-    return MeetingRequestModel(
-      id: doc.id,
-      inviterId: data['inviterId'],
-      inviteeId: data['inviteeId'],
-      dateTime: (data['dateTime'] as Timestamp).toDate(),
-      duration: data['duration'],
-      roomId: data['roomId'],
-      status: data['status'],
-    );
-  }
-
-  Map<String, dynamic> toMap() {
+  // Convert a Meeting instance to JSON map
+  Map<String, dynamic> toJson() {
     return {
-      'inviterId': inviterId,
+      'id': id,
       'inviteeId': inviteeId,
-      'dateTime': dateTime,
-      'duration': duration,
-      'roomId': roomId,
+      'inviteeName': inviteeName,
+      'date': date,
+      'startTime': startTime,
+      'endTime': endTime,
+      'room': room,
       'status': status,
+      'createdBy': createdBy,
     };
   }
 }

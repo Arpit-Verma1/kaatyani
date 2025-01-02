@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/meeting_request_model.dart';
 
 class MeetingRequestCard extends StatelessWidget {
-  final MeetingRequestModel request;
+  final Meeting request;
   final VoidCallback onAccept;
   final VoidCallback onDecline;
 
@@ -20,7 +20,7 @@ class MeetingRequestCard extends StatelessWidget {
       child: ListTile(
         title: Text("Meeting with ${request.inviteeId}"),
         subtitle: Text(
-          "Room: ${request.roomId}\nDate: ${request.dateTime}\nDuration: ${request.duration} mins",
+          "Room: ${request.room}\nDate: ${request.date}\n Stat On: ${request.startTime} mins",
         ),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,

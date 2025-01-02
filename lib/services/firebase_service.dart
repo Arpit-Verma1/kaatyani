@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:katyani/models/meeting_request_model.dart';
+
 import '../models/user_model.dart';
 
 class FirebaseService {
@@ -21,12 +23,9 @@ class FirebaseService {
     }
   }
 
-
   Future<List<UserModel>> getUsers() async {
     final snapshot = await _firestore.collection('users').get();
-    return snapshot.docs
-        .map((doc) => UserModel.fromMap(doc.data()))
-        .toList();
+    return snapshot.docs.map((doc) => UserModel.fromMap(doc.data())).toList();
   }
 
   Future<List<Map<String, dynamic>>> getAcceptedMeetings() async {
@@ -35,15 +34,18 @@ class FirebaseService {
         .where('status', isEqualTo: 'accepted')
         .get();
 
-    return snapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+    return snapshot.docs
+        .map((doc) => doc.data() as Map<String, dynamic>)
+        .toList();
   }
 
-
-  Future<List<Map<String, dynamic>>> getPendingRequests() async {
+  Future< List<Map<String, dynamic>>> getPendingRequests() async {
     final snapshot = await _firestore
         .collection('meetings')
         .where('status', isEqualTo: 'pending')
         .get();
+
+
     return snapshot.docs.map((doc) => doc.data()).toList();
   }
 

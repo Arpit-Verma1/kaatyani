@@ -8,7 +8,7 @@ class UsersListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Users')),
+      appBar: AppBar(title: const Text('Available Users')),
       body: FutureBuilder(
         future: FirebaseService().getUsers(),
         builder: (context, snapshot) {
