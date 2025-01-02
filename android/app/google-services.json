@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "667596749825",
+    "project_id": "katyani",
+    "storage_bucket": "katyani.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667596749825:android:3dff5ca8cf75cba64d9400",
+        "android_client_info": {
+          "package_name": "com.example.katyani"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDd1l62FM4fqtGtbe9_p6jwef3gvwAEYPo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
